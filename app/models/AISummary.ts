@@ -8,6 +8,10 @@ const AISummarySchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "File",
     },
+    isReported: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

@@ -8,6 +8,7 @@ const ClauseContext = createContext<IClause>({
   handleClause: () => {},
   setContent: () => {},
   setClauses: () => {},
+  setSummary: () => {},
   setDocument: () => {},
   saveDocument: () => {},
   content: "",
@@ -27,6 +28,7 @@ interface IClause {
   saveDocument: (v: string) => void;
   setDocument: (v: IDocument) => void;
   setClauses: (v: IClauseData[]) => void;
+  setSummary: (v: IClauseSummary[]) => void;
   content: string;
   loading: boolean;
   document: IDocument | null;
@@ -44,6 +46,8 @@ export interface IClauseData {
 export interface IClauseSummary {
   title: string;
   summary: string;
+  isReported: boolean;
+  _id: string;
 }
 
 interface IDocument {
@@ -110,6 +114,7 @@ const ClauseProvider = ({ children }: { children: ReactNode }) => {
         setDocument,
         saveDocument,
         setClauses,
+        setSummary,
         loading,
         document,
         generateSummary,

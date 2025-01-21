@@ -7,7 +7,7 @@ import { MoonLoader, RotateLoader } from "react-spinners";
 import {
   getAllReports,
   reportAIReview,
-} from "@/app/actions/reportAIGeneratedReport";
+} from "@/app/actions/report";
 import { getAllReportsByDocumentId } from "@/app/actions/aIGeneratedReview";
 
 interface IAIResults {

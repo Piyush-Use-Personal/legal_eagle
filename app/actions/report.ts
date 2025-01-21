@@ -3,6 +3,7 @@ import { IClauseData } from "@/hooks/useClause";
 import Report from "../models/Reports";
 import dbConnect from "../lib/mongoose";
 import AIReview from "../models/AIGeneratedReview";
+import AISummary from "../models/AISummary";
 
 export const reportAIReview = async (clauseId: string) => {
   await dbConnect();
@@ -17,6 +18,27 @@ export const reportAIReview = async (clauseId: string) => {
     }
     clause.isReported = true;
     await clause.save();
+    return { message: "report created" };
+  } catch (error) {
+    return {
+      message: error,
+    };
+  }
+};
+
+export const reportAISummary = async (summaryId: string) => {
+  await dbConnect();
+
+  if (!summaryId) {
+    return { message: "invalid input" };
+  }
+  try {
+    const summary = await AISummary.findById(summaryId);
+    if (!summary) {
+      throw new Error("summary not found");
+    }
+    summary.isReported = true;
+    await summary.save();
     return { message: "report created" };
   } catch (error) {
     return {
